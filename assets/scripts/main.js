@@ -3,17 +3,6 @@
 // TODO: firefox audio warning
 // TODO: pwa
 
-Bagel.pwa.init({
-    manifest: "manifest.json",
-    worker: "worker.js",
-    versions: "versions.json",
-    version: "version.txt",
-
-    icons: true,
-    multiTabStorageName: "Mincecraft multitab",
-    versionStorageName: "Mincecraft version",
-    cacheStorageName: "Mincecraft cache"
-});
 if (typeof caches == "undefined") {
     alert("Error: \"caches\" doesn't exist. The browser could be too old or this might be HTTP.");
 }
@@ -395,6 +384,17 @@ else {
                             }
                         });
                     }
+                    Bagel.pwa.init({
+                        manifest: "manifest.json",
+                        worker: "worker.js",
+                        versions: "versions.json",
+                        version: "version.txt",
+
+                        icons: true,
+                        multiTabStorageName: "Mincecraft multitab",
+                        versionStorageName: "Mincecraft version",
+                        cacheStorageName: "Mincecraft cache"
+                    });
                 };
             };
         }
