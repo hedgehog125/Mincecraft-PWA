@@ -391,12 +391,14 @@ else {
 
                         let uploadMessage = document.getElementById("uploadMessage");
                         uploadMessage.hidden = false;
+                        /*
                         uploadMessage.onclick = () => {
                             document.body.onclick();
                         };
                         uploadMessage.ontouchstart = () => {
                             document.body.onclick();
                         };
+                        */
 
                         document.body.ontouchstart = () => {
                             document.body.onclick();
