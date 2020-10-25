@@ -375,12 +375,14 @@ else {
                                     width: 800,
                                     height: 450
                                 });
+                                initPWA();
                             });
                         });
                     }
                     else {
                         let tmp = Bagel.init({id:"game",width:1,height:1,config:{display:{dom:false}},state:"game"}); // Create a temporary game so the plugin is loaded
-
+                        initPWA();
+                        
                         let uploadMessage = document.getElementById("uploadMessage");
                         uploadMessage.hidden = false;
                         uploadMessage.onclick = () => {
@@ -423,21 +425,24 @@ else {
                             });
                         };
                     }
-                    Bagel.pwa.init({
-                        manifest: "manifest.json",
-                        debugManifest: "debugManifest.json",
-                        worker: "worker.js",
-                        versions: "versions.json",
-                        version: "version.txt",
-
-                        icons: true,
-                        multiTabStorageName: "Mincecraft multitab",
-                        versionStorageName: "Mincecraft version",
-                        cacheStorageName: "Mincecraft cache",
-                        debug: false
-                    });
                 };
             };
         }
     };
 }
+
+const initPWA = () => {
+    Bagel.pwa.init({
+        manifest: "manifest.json",
+        debugManifest: "debugManifest.json",
+        worker: "worker.js",
+        versions: "versions.json",
+        version: "version.txt",
+
+        icons: true,
+        multiTabStorageName: "Mincecraft multitab",
+        versionStorageName: "Mincecraft version",
+        cacheStorageName: "Mincecraft cache",
+        debug: false
+    });
+};
