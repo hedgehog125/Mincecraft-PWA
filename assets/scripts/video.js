@@ -44,7 +44,11 @@
 
                         // Play it for a frame or so. This means the first frame is loaded
                         video.muted = true; // Mute it so it can auto play
-                        video.play();
+                        (video => {
+                            video.play().catch(() => {
+                                video.pause();
+                            });
+                        })(video);
                     },
                     get: "video",
                     description: "A video. Creates an image asset with the same id that updates as it plays."
@@ -85,15 +89,27 @@
                             let video = game.get.asset.video(args.id).internal;
                             video.video.loop = args.loop;
                             video.video.currentTime = args.startTime;
-                            video.video.muted = args.muted;
 
                             let internalPlugin = game.internal.plugins.Internal;
+
+                            if (internalPlugin.vars.audio.autoPlay) {
+                                try {
+                                    video.video.muted = args.muted;
+                                }
+                                catch {
+                                    internalPlugin.vars.audio.autoPlay = false;
+                                }
+                            }
+
                             if (internalPlugin.vars.audio.autoPlay) {
                                 ((args, internalPlugin, video) => {
                                     video.video.play().catch(() => {
+                                        video.video.pause();
+
                                         internalPlugin.vars.audio.autoPlay = false;
+
                                         video.video.muted = true;
-                                        video.video.play(); // Play it muted
+                                        video.video.play().catch(video => video.pause()); // Play it muted
                                         plugin.vars.queue.push(video); // Queue it to be unmuted
 
                                         let builtIn = game.internal.plugins.Internal; // Create the unmute button
