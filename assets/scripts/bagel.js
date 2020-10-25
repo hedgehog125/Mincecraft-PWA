@@ -3,18 +3,16 @@ Bagel.js by hedgehog125, see https://github.com/hedgehog125/Bagel.js. License in
 Button sounds from: https://scratch.mit.edu/projects/42854414/ under CC BY-SA 2.0
 
 TODO:
-Mask audit problem in lighthouse ???? What does this mean again?
+Mask icon audit problem in lighthouse ???? One of the ways to improve in last section
 Safari audio doesn't work. Even after clicking unmute. Should also assume muted videos might not play. (make sure this is true with audio too). What about firefox? Is it the same as chrome's? Mobile PWAs (Chrome) are supposed to always allow auto play but this seems inconsistent
 Make full pwa instructions, including how to set the startURL and scope properly
-WebGL renderer. The firefox performance is 392x the canvas performance!
+WebGL renderer. The firefox performance is 392x the canvas performance! Don't forget context lost handling
 Make sure the global "game" variable isn't accessed
 With function x/y positions, the sprite doesn't have all the properties
 Change renderer description when WegGL is added
 Sprite/plugin tasks while loading
 Fix spelling errors
 Tidy up files included
-Apple touch icons
-WebGL renderer. Don't forget context lost handling
 Gamepad support
 
 TESTING
@@ -39,9 +37,7 @@ Bagel = {
         subFunctions.listeners(game, game.internal.renderer.canvas.addEventListener);
         subFunctions.loadingScreen(game);
 
-        if (Object.keys(Bagel.internal.games).length == 0) {
-            console.log("Bagel.js | 🥯🥯🥯 | 2d Canvas\nhttps://github.com/hedgehog125/Bagel.js");
-        }
+        console.log("Bagel.js | 🥯🥯🥯 | 2d Canvas\nhttps://github.com/hedgehog125/Bagel.js");
         Bagel.internal.games[game.id] = game;
         Bagel.internal.loadCurrent();
         return game;

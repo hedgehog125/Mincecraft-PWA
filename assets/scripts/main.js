@@ -37,7 +37,6 @@ else {
                             console.log(event.errorCode, event);
                         };
                     }
-                    let tmp = Bagel.init({id:"game",width:1,height:1,config:{display:{dom:false}},state:"game"}); // Create a temporary game so the plugin is loaded
                     if (video) {
                         fetch(video).then(res => {
                             res.blob().then(blob => {
@@ -380,8 +379,18 @@ else {
                         });
                     }
                     else {
-                        document.getElementById("uploadMessage").hidden = false;
-                        document.getElementById("uploadMessage").onclick = () => {
+                        let tmp = Bagel.init({id:"game",width:1,height:1,config:{display:{dom:false}},state:"game"}); // Create a temporary game so the plugin is loaded
+
+                        let uploadMessage = document.getElementById("uploadMessage");
+                        uploadMessage.hidden = false;
+                        uploadMessage.onclick = () => {
+                            document.body.onclick();
+                        };
+                        uploadMessage.ontouchstart = () => {
+                            document.body.onclick();
+                        };
+
+                        document.body.ontouchstart = () => {
                             document.body.onclick();
                         };
                         document.body.onclick = () => {
@@ -412,7 +421,7 @@ else {
                                     location.reload();
                                 }
                             });
-                        }
+                        };
                     }
                     Bagel.pwa.init({
                         manifest: "manifest.json",
