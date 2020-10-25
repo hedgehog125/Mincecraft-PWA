@@ -2786,7 +2786,7 @@ Bagel = {
 
                             mouse.down = true;
                             if (e.cancelable) {
-                                ctx.preventDefault();
+                                e.preventDefault();
                             }
                         }, false);
                         addEventListener("touchmove", e => {

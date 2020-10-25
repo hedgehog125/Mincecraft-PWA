@@ -22,7 +22,14 @@ else {
                 let transaction = database.transaction(["Video"], "readonly");
                 let objectStore = transaction.objectStore("Video");
                 let request = objectStore.get("Video");
+
+                let messageTimer = setTimeout(() => { // Display a message if it's taking a while to load the file
+                    document.getElementById("loadingMessage").hidden = false;
+                }, 500);
                 request.onsuccess = event => {
+                    clearTimeout(messageTimer);
+                    document.getElementById("loadingMessage").hidden = true;
+
                     let video = event.target.result;
 
                     if (location.href.includes("#clear")) {
@@ -42,7 +49,6 @@ else {
                             res.blob().then(blob => {
                                 video = URL.createObjectURL(blob);
 
-                                tmp.delete();
                                 game = Bagel.init({
                                     id: "game",
                                     game: {
@@ -382,7 +388,7 @@ else {
                     else {
                         let tmp = Bagel.init({id:"game",width:1,height:1,config:{display:{dom:false}},state:"game"}); // Create a temporary game so the plugin is loaded
                         initPWA();
-                        
+
                         let uploadMessage = document.getElementById("uploadMessage");
                         uploadMessage.hidden = false;
                         uploadMessage.onclick = () => {
