@@ -389,24 +389,15 @@ else {
                         let tmp = Bagel.init({id:"game",width:1,height:1,config:{display:{dom:false}},state:"game"}); // Create a temporary game so the plugin is loaded
                         initPWA();
 
-                        let uploadMessage = document.getElementById("uploadMessage");
-                        uploadMessage.hidden = false;
-                        /*
-                        uploadMessage.onclick = () => {
-                            document.body.onclick();
-                        };
-                        uploadMessage.ontouchstart = () => {
-                            document.body.onclick();
-                        };
-                        */
+                        document.getElementById("uploadMessage").hidden = false;
 
-                        document.body.ontouchstart = () => {
-                            document.body.onclick();
+                        document.ontouchstart = () => {
+                            document.onclick();
                         };
-                        document.body.onclick = () => {
+                        document.onclick = () => {
                             Bagel.upload(url => {
-                                document.body.onclick = null;
-                                document.getElementById("uploadMessage").onclick = null;
+                                document.onclick = null;
+                                document.ontouchstart = null;
                                 window.onbeforeunload = e => {
                                     e.preventDefault();
                                     e.returnValue = "";
