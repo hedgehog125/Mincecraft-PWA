@@ -1,8 +1,5 @@
 // TODO: works weirdly in safari
 // TODO: add frame extraction to the video plugin
-// TODO: install prompt not working? Only one PWA per domain maybe?
-// Muted on android, black background. Takes ages to load
-// TODO: black screen still sometimes appears when first loading a video
 
 if (typeof caches == "undefined") {
     alert("Error: \"caches\" doesn't exist. The browser could be too old or this might be HTTP.");
