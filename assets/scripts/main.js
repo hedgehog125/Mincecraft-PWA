@@ -381,9 +381,13 @@ else {
                     }
                     else {
                         document.getElementById("uploadMessage").hidden = false;
+                        document.getElementById("uploadMessage").onclick = () => {
+                            document.body.onclick();
+                        };
                         document.body.onclick = () => {
                             Bagel.upload(url => {
                                 document.body.onclick = null;
+                                document.getElementById("uploadMessage").onclick = null;
                                 window.onbeforeunload = e => {
                                     e.preventDefault();
                                     e.returnValue = "";
