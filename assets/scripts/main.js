@@ -409,13 +409,13 @@ else {
                                     let objectStore = transaction.objectStore("Video");
                                     let request = objectStore.put(url, "Video");
 
+                                    document.getElementById("uploadMessage").hidden = true;
                                     let loadingMessage = document.getElementById("loadingMessage");
                                     loadingMessage.innerHTML = "Uploading...<br>This can take up to 10-15 seconds depending on the size.";
                                     loadingMessage.hidden = false;
 
                                     transaction.oncomplete = () => { // Saved
                                         window.onbeforeunload = null;
-                                        loadingMessage.hidden = true;
                                         location.reload();
                                     };
                                     transaction.onerror = event => {
