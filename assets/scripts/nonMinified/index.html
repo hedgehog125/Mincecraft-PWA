@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#202020">
+    <meta name="description" content="Rickrolling">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rickroll PWA</title>
+
+    <link rel="icon" type="image/png" href="assets/imgs/icons/512x512.png">
+    <link rel="apple-touch-icon" sizes="512x512" type="image/png" href="assets/imgs/icons/512x512.png">
+</head>
+<body bgColor="#202020">
+    <noscript>
+        <p style="color:white;">Please enable JavaScript for this page to work.</p>
+        </noscript>
+    <script src="assets/scripts/bagel.js"></script>
+    <script src="assets/scripts/main.js" charset="utf-8"></script>
+
+    <p hidden id="loadingMessage" style="color:white;text-align:center;">
+        Loading video...
+    </p>
+    <div style="width:300px;height:50px;top:50%;left:50%;margin-top:-150px;margin-left:-150px;position:fixed;">
+        <p hidden id="uploadMessage" style="color:white;text-align:center;">
+            Click to upload the rickroll video... <br>
+            <br>
+            It can be cleared at any time by putting "#clear" onto the end of the url and loading that page. <br>
+            The video will be stored on your computer (using indexedDB) and can be cleared by deleting this site's data. No fingerprinting is used. <br>
+            <br>
+            Copyright notice: This website falls under fair use as it's just a tool for making a funny video and doesn't actually contain the rickroll video as it's provided by the user.
+        </p>
+    </div>
+</body>
+</html>
