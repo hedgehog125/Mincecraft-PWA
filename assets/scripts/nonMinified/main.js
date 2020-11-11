@@ -20,13 +20,7 @@ else {
                 let objectStore = transaction.objectStore("Video");
                 let request = objectStore.get("Video");
 
-                let messageTimer = setTimeout(() => { // Display a message if it's taking a while to load the file
-                    document.getElementById("loadingMessage").hidden = false;
-                }, 500);
                 request.onsuccess = event => {
-                    clearTimeout(messageTimer);
-                    document.getElementById("loadingMessage").hidden = true;
-
                     let video = event.target.result;
 
                     if (location.href.includes("#clear")) {
@@ -45,6 +39,7 @@ else {
                         fetch(video).then(res => {
                             res.blob().then(blob => {
                                 video = URL.createObjectURL(blob);
+                                document.getElementById("loadingMessage").hidden = true; // Hide the message
 
                                 game = Bagel.init({
                                     id: "game",
